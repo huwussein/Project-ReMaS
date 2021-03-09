@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OnderdeelApparaat index{% endblock %}
+
+{% block body %}
+    <h1>OnderdeelApparaat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Percentage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for onderdeel_apparaat in onderdeel_apparaats %}
+            <tr>
+                <td>{{ onderdeel_apparaat.id }}</td>
+                <td>{{ onderdeel_apparaat.Percentage }}</td>
+                <td>
+                    <a href="{{ path('onderdeel_apparaat_show', {'id': onderdeel_apparaat.id}) }}">show</a>
+                    <a href="{{ path('onderdeel_apparaat_edit', {'id': onderdeel_apparaat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('onderdeel_apparaat_new') }}">Create new</a>
+{% endblock %}

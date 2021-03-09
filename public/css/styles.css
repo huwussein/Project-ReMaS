@@ -1,0 +1,10 @@
+body {font-family: "Roboto", sans-serif}
+.w3-bar-block .w3-bar-item {
+    padding: 16px;
+    font-weight: bold;
+}
+
+.logout {
+    width: 55px;
+    height: auto;
+}

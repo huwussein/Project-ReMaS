@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Onderdelen{% endblock %}
+
+{% block body %}
+    <h1>Onderdelen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ onderdelen.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ onderdelen.Naam }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ onderdelen.Omschrijving }}</td>
+            </tr>
+            <tr>
+                <th>Prijs Per Kg</th>
+                <td>€{{ onderdelen.PrijsPerKg }}</td>
+            </tr>
+            <tr>
+                <th>Voorraad in Kg</th>
+                <td>{{ onderdelen.VoorraadKg }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('onderdelen_index') }}">back to list</a>
+
+    <a href="{{ path('onderdelen_edit', {'id': onderdelen.id}) }}">edit</a>
+
+    {{ include('onderdelen/_delete_form.html.twig') }}
+{% endblock %}

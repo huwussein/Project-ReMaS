@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apparaten index{% endblock %}
+
+{% block body %}
+    <h1>Apparaten index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Vergoeding in €</th>
+                <th>Gewicht Gram</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for apparaten in apparatens %}
+            <tr>
+                <td>{{ apparaten.id }}</td>
+                <td>{{ apparaten.Naam }}</td>
+                <td>{{ apparaten.Omschrijving }}</td>
+                <td>€{{ apparaten.Vergoeding }}</td>
+                <td>{{ apparaten.GewichtGram }}</td>
+                <td>
+                    <a href="{{ path('apparaten_show', {'id': apparaten.id}) }}">show</a>
+                    <a href="{{ path('apparaten_edit', {'id': apparaten.id}) }}">edit</a>
+                    <a href="{{ path('apparaten_pdf', {'id': apparaten.id}) }}">pdf</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('apparaten_new') }}">Create new</a>
+{% endblock %}

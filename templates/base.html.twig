@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('/css/styles.css')}}">
+            <!-- CSS only -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-light-green.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+            <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="/"><img src="https://pngimg.com/uploads/recycle/recycle_PNG32.png" style="width:80%;"></a>
+            <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+            <a class="w3-bar-item w3-button w3-light-green" href="/">Home</a>
+            <a class="w3-bar-item w3-button" href="#">Inname</a>
+            <a class="w3-bar-item w3-button" href="#">Verwerking</a>
+            <a class="w3-bar-item w3-button" href="#">Uitgifte</a>
+            <a class="w3-bar-item w3-button" href="#">Rapportage</a>
+
+            <div>
+                <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Onderhoud <i class="fa fa-caret-down"></i></a>
+                <div id="demo" class="w3-hide">
+                    <a class="w3-bar-item w3-button" href="/user">Medewerkers</a>
+                    <a class="w3-bar-item w3-button" href="/apparaten">Apparaten</a>
+                    <a class="w3-bar-item w3-button" href="/onderdelen">Onderdelen</a>
+                    <a class="w3-bar-item w3-button" href="#">Innames</a>
+                    <a class="w3-bar-item w3-button" href="#">Uitgiftes</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+        <div class="w3-main" style="margin-left:250px;">
+
+            <div id="myTop" class="w3-container w3-top w3-theme w3-large">
+                <p><i class="fa fa-bars w3-button w3-light-green w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+                    <span id="myIntro" class="w3-hide">ReMaS</span></p>
+            </div>
+
+            <header class="w3-container w3-theme" style="padding:64px 32px">
+                <h1 class="w3-xxxlarge">ReMaS Superior Waste Recycling</h1>
+                <p>versie: 1.00</p>
+                {% if app.user %}
+                    <div class="mb-3">
+                        Welkom {{ app.user.naam }},
+                        <a href="{{ path('app_logout') }}">
+                            <img src="https://i.ibb.co/smq5Gn9/image.png"
+                                 class="logout w3-hover-sepia">
+                        </a>
+                    </div>
+                    {% else %}
+                        <a href="/login">login</a>
+                {% endif %}
+            </header>
+
+            <div class="w3-container" style="padding:32px">
+
+        {% block javascripts %}
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+            <script>
+                // Open and close the sidebar on medium and small screens
+                function w3_open() {
+                    document.getElementById("mySidebar").style.display = "block";
+                    document.getElementById("myOverlay").style.display = "block";
+                }
+
+                function w3_close() {
+                    document.getElementById("mySidebar").style.display = "none";
+                    document.getElementById("myOverlay").style.display = "none";
+                }
+
+                // Change style of top container on scroll
+                window.onscroll = function() {myFunction()};
+                function myFunction() {
+                    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                        document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+                        document.getElementById("myIntro").classList.add("w3-show-inline-block");
+                    } else {
+                        document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+                        document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+                    }
+                }
+
+                // Accordions
+                function myAccordion(id) {
+                    var x = document.getElementById(id);
+                    if (x.className.indexOf("w3-show") == -1) {
+                        x.className += " w3-show";
+                        x.previousElementSibling.className += " w3-theme";
+                    } else {
+                        x.className = x.className.replace("w3-show", "");
+                        x.previousElementSibling.className =
+                            x.previousElementSibling.className.replace(" w3-theme", "");
+                    }
+                }
+            </script>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</div>
+    <footer class="w3-container w3-theme" style="padding:32px">
+        <p>Footer information goes here</p>
+    </footer>
+</html>

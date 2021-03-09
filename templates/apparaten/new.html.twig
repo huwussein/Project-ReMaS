@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Apparaten{% endblock %}
+
+{% block body %}
+    <h1>Create new Apparaten</h1>
+
+    {{ include('apparaten/_form.html.twig') }}
+
+    <a href="{{ path('apparaten_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apparaten{% endblock %}
+
+{% block body %}
+    <h1>Apparaten</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ apparaten.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ apparaten.Naam }}</td>
+            </tr>
+            <tr>
+                <th>Omschrijving</th>
+                <td>{{ apparaten.Omschrijving }}</td>
+            </tr>
+            <tr>
+                <th>Vergoeding</th>
+                <td>{{ apparaten.Vergoeding }}</td>
+            </tr>
+            <tr>
+                <th>GewichtGram</th>
+                <td>{{ apparaten.GewichtGram }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('apparaten_index') }}">back to list</a>
+
+    <a href="{{ path('apparaten_edit', {'id': apparaten.id}) }}">edit</a>
+
+    {{ include('apparaten/_delete_form.html.twig') }}
+{% endblock %}

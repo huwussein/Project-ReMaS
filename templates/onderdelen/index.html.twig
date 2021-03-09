@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Onderdelen index{% endblock %}
+
+{% block body %}
+    <h1>Onderdelen index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Prijs Per Kg</th>
+                <th>Voorraad in Kg</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for onderdelen in onderdelens %}
+            <tr>
+                <td>{{ onderdelen.id }}</td>
+                <td>{{ onderdelen.Naam }}</td>
+                <td>{{ onderdelen.Omschrijving }}</td>
+                <td>€{{ onderdelen.PrijsPerKg }}</td>
+                <td>{{ onderdelen.VoorraadKg }}</td>
+                <td>
+                    <a href="{{ path('onderdelen_show', {'id': onderdelen.id}) }}">show</a>
+                    <a href="{{ path('onderdelen_edit', {'id': onderdelen.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('onderdelen_new') }}">Create new</a>
+{% endblock %}

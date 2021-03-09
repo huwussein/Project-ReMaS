@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Apparaten{% endblock %}
+
+{% block body %}
+    <h1>Edit Apparaten</h1>
+
+    {{ include('apparaten/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('apparaten_index') }}">back to list</a>
+
+    {{ include('apparaten/_delete_form.html.twig') }}
+{% endblock %}
