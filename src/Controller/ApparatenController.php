@@ -18,6 +18,8 @@ class ApparatenController extends AbstractController
     #[Route('/', name: 'apparaten_index', methods: ['GET'])]
     public function index(ApparatenRepository $apparatenRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('apparaten/index.html.twig', [
             'apparatens' => $apparatenRepository->findAll(),
         ]);

@@ -16,6 +16,8 @@ class OnderdelenController extends AbstractController
     #[Route('/', name: 'onderdelen_index', methods: ['GET'])]
     public function index(OnderdelenRepository $onderdelenRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('onderdelen/index.html.twig', [
             'onderdelens' => $onderdelenRepository->findAll(),
         ]);
