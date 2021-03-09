@@ -52,23 +52,20 @@ class ApparatenController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/pdf/{id}", name="apparaten_pdf", methods={"GET"})
-     */
+    #[Route('/pdf/{id}', name: 'apparaten_pdf', methods: ['GET'])]
     public function showPDF(Apparaten $apparaten)
-
     {
 
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial' );
+        $pdfOptions->set('defaultFont', 'Arial');
 
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('apparaten/pdf.html.twig', [
-            'apparaten' => $apparaten
+            'title' => "Welcome to our PDF Test"
         ]);
 
         // Load HTML to Dompdf
@@ -81,9 +78,9 @@ class ApparatenController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (inline view)
-        $dompdf->stream()(exit())("bonnetje.pdf", [
-            "Attachment" => true
-        ]);
+        $dompdf->stream("pdf.pdf", [
+            "Attachment" => false
+        ]);exit(0);
     }
 
     #[Route('/{id}/edit', name: 'apparaten_edit', methods: ['GET', 'POST'])]
