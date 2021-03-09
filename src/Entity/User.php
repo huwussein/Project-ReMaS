@@ -44,12 +44,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Uitgiftes::class, mappedBy="MedewerkerId")
+     * @ORM\OneToMany(targetEntity=Uitgiftes::class, mappedBy="MedewerkerNaam")
      */
     private $uitgiftes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Innames::class, mappedBy="MedewerkerId")
+     * @ORM\OneToMany(targetEntity=Innames::class, mappedBy="MedewerkerNaam")
      */
     private $innames;
 
@@ -164,7 +164,7 @@ class User implements UserInterface
     {
         if (!$this->uitgiftes->contains($uitgifte)) {
             $this->uitgiftes[] = $uitgifte;
-            $uitgifte->setMedewerkerId($this);
+            $uitgifte->setMedewerkerNaam($this);
         }
 
         return $this;
@@ -174,8 +174,8 @@ class User implements UserInterface
     {
         if ($this->uitgiftes->removeElement($uitgifte)) {
             // set the owning side to null (unless already changed)
-            if ($uitgifte->getMedewerkerId() === $this) {
-                $uitgifte->setMedewerkerId(null);
+            if ($uitgifte->getMedewerkerNaam() === $this) {
+                $uitgifte->setMedewerkerNaam(null);
             }
         }
 
@@ -194,7 +194,7 @@ class User implements UserInterface
     {
         if (!$this->innames->contains($inname)) {
             $this->innames[] = $inname;
-            $inname->setMedewerkerId($this);
+            $inname->setMedewerkerNaam($this);
         }
 
         return $this;
@@ -204,11 +204,16 @@ class User implements UserInterface
     {
         if ($this->innames->removeElement($inname)) {
             // set the owning side to null (unless already changed)
-            if ($inname->getMedewerkerId() === $this) {
-                $inname->setMedewerkerId(null);
+            if ($inname->getMedewerkerNaam() === $this) {
+                $inname->setMedewerkerNaam(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNaam();
     }
 }

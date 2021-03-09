@@ -21,7 +21,7 @@ class Uitgiftes
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="uitgiftes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $MedewerkerId;
+    private $MedewerkerNaam;
 
     /**
      * @ORM\ManyToOne(targetEntity=Onderdelen::class, inversedBy="uitgiftes")
@@ -49,14 +49,14 @@ class Uitgiftes
         return $this->id;
     }
 
-    public function getMedewerkerId(): ?User
+    public function getMedewerkerNaam(): ?User
     {
-        return $this->MedewerkerId;
+        return $this->MedewerkerNaam;
     }
 
-    public function setMedewerkerId(?User $MedewerkerId): self
+    public function setMedewerkerNaam(?User $MedewerkerNaam): self
     {
-        $this->MedewerkerId = $MedewerkerId;
+        $this->MedewerkerNaam = $MedewerkerNaam;
 
         return $this;
     }
@@ -107,5 +107,10 @@ class Uitgiftes
         $this->Prijs = $Prijs;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getMedewerkerNaam(). ' -> '.$this->getGewichtKg();
     }
 }

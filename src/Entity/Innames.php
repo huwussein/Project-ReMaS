@@ -23,7 +23,7 @@ class Innames
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="innames")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $MedewerkerId;
+    private $MedewerkerNaam;
 
     /**
      * @ORM\Column(type="time")
@@ -45,14 +45,14 @@ class Innames
         return $this->id;
     }
 
-    public function getMedewerkerId(): ?User
+    public function getMedewerkerNaam(): ?User
     {
-        return $this->MedewerkerId;
+        return $this->MedewerkerNaam;
     }
 
-    public function setMedewerkerId(?User $MedewerkerId): self
+    public function setMedewerkerNaam(?User $MedewerkerNaam): self
     {
-        $this->MedewerkerId = $MedewerkerId;
+        $this->MedewerkerNaam = $MedewerkerNaam;
 
         return $this;
     }
@@ -97,5 +97,10 @@ class Innames
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getId(). '';
     }
 }
