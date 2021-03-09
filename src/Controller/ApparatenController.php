@@ -65,7 +65,7 @@ class ApparatenController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('apparaten/pdf.html.twig', [
-            'title' => "Welcome to our PDF Test"
+            'apparaten' => $apparaten
         ]);
 
         // Load HTML to Dompdf

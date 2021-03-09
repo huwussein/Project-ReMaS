@@ -1,12 +1,41 @@
 {% block body %}
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Title of the PDF</title>
-</head>
-<body>
-<h4>{{ title }}</h4>
-    <p>Lorem Ipsum</p>
-</body>
-</html>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    </head>
+    <body>
+
+    <h2>ReMaS Superior Waste Recycling</h2>
+
+    <table>
+        <tr>
+            <td> id </td>
+            <td> Naam </td>
+            <td> Omschrijving </td>
+            <td> Vergoeding </td>
+            <td> GewichtGram </td>
+        </tr>
+        <tr>
+            <td>{{ apparaten.id }}</td>
+            <td>{{ apparaten.Naam }}</td>
+            <td>{{ apparaten.Omschrijving }}</td>
+            <td>€{{ apparaten.Vergoeding }}</td>
+            <td>{{ apparaten.GewichtGram }}</td>
+        </tr>
+
+    </table>
 {% endblock %}
