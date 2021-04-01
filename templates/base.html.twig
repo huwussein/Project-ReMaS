@@ -3,8 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('/css/styles.css')}}">
             <!-- CSS only -->
@@ -15,6 +13,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% endblock %}
 
+        <!-- Sidebar -->
         <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
             <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="/"><img src="https://pngimg.com/uploads/recycle/recycle_PNG32.png" style="width:80%;"></a>
             <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
@@ -24,6 +23,7 @@
             <a class="w3-bar-item w3-button" href="#">Uitgifte</a>
             <a class="w3-bar-item w3-button" href="#">Rapportage</a>
 
+            <!-- Drop-down in sidebar -->
             <div>
                 <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Onderhoud (Admin)<i class="fa fa-caret-down"></i></a>
                 <div id="demo" class="w3-hide">
@@ -40,11 +40,13 @@
 
         <div class="w3-main" style="margin-left:250px;">
 
+
             <div id="myTop" class="w3-container w3-top w3-theme w3-large">
                 <p><i class="fa fa-bars w3-button w3-light-green w3-hide-large w3-xlarge" onclick="w3_open()"></i>
                     <span id="myIntro" class="w3-hide">ReMaS</span></p>
             </div>
 
+            <!-- Remas tekst met versienummer en logout button bovenaan de pagina -->
             <header class="w3-container w3-theme" style="padding:64px 32px">
                 <h1 class="w3-xxxlarge">ReMaS Superior Waste Recycling</h1>
                 <p>versie: 1.00</p>

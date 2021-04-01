@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+//use statement voor dompdf
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -18,6 +20,7 @@ class ApparatenController extends AbstractController
     #[Route('/', name: 'apparaten_index', methods: ['GET'])]
     public function index(ApparatenRepository $apparatenRepository): Response
     {
+        //zorgt ervoor dat allen admin toegang heeft
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('apparaten/index.html.twig', [
@@ -25,6 +28,7 @@ class ApparatenController extends AbstractController
         ]);
     }
 
+    //zorgt voor het aanmaken van een nieuwe apparaat
     #[Route('/new', name: 'apparaten_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -54,6 +58,7 @@ class ApparatenController extends AbstractController
         ]);
     }
 
+    //code van dompdf om een pdf te kunnen genereren
     #[Route('/pdf/{id}', name: 'apparaten_pdf', methods: ['GET'])]
     public function showPDF(Apparaten $apparaten)
     {
@@ -85,6 +90,7 @@ class ApparatenController extends AbstractController
         ]);exit(0);
     }
 
+    //bestaande apparaat wijzigen
     #[Route('/{id}/edit', name: 'apparaten_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Apparaten $apparaten): Response
     {
@@ -103,6 +109,7 @@ class ApparatenController extends AbstractController
         ]);
     }
 
+    //bestaande apparaat verwijderen
     #[Route('/{id}', name: 'apparaten_delete', methods: ['DELETE'])]
     public function delete(Request $request, Apparaten $apparaten): Response
     {
